@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+import React, {useState} from "react";
 
 // Style
 import "./ConferenceEvent.css";
 
 // components
-import { incrementQuantity, decrementQuantity } from "./venueSlice";
-import { incrementAvQuantity, decrementAvQuantity } from "./avSlice";
+import {incrementQuantity, decrementQuantity} from "./venueSlice";
+import {incrementAvQuantity, decrementAvQuantity} from "./avSlice";
 import TotalCost from "./TotalCost";
-import { toggleMealSelection } from "./mealsSlice";
+import {toggleMealSelection} from "./mealsSlice";
 // hooks
-import { useSelector, useDispatch } from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 
 // slice
 import venueReducer from "./store";
@@ -73,7 +75,7 @@ const ConferenceEvent = () => {
     const items = [];
     venueItems.forEach((item) => {
       if (item.quantity > 0) {
-        items.push({ ...item, type: "venue" });
+        items.push({...item, type: "venue"});
       }
     });
     avItems.forEach((item) => {
@@ -81,12 +83,12 @@ const ConferenceEvent = () => {
         item.quantity > 0 &&
         !items.some((i) => i.name === item.name && i.type === "av")
       ) {
-        items.push({ ...item, type: "av" });
+        items.push({...item, type: "av"});
       }
     });
     mealsItems.forEach((item) => {
       if (item.selected) {
-        const itemForDisplay = { ...item, type: "meals" };
+        const itemForDisplay = {...item, type: "meals"};
         if (item.numberOfPeople) {
           itemForDisplay.numberOfPeople = numberOfPeople;
         }
@@ -98,7 +100,7 @@ const ConferenceEvent = () => {
 
   const items = getItemsFromTotalCost();
 
-  const ItemsDisplay = ({ items }) => {
+  const ItemsDisplay = ({items}) => {
     console.log(items);
     return (
       <>
@@ -279,12 +281,12 @@ const ConferenceEvent = () => {
             </div>
 
             {/*Necessary Add-ons*/}
-            <div id="addons" className="venue_container container_main">
+            <div id="addons" className="addons_cont">
               <div className="text">
                 <h1> Add-ons Selection</h1>
               </div>
               {avItems.map((item, index) => (
-                <div className="av_data venue_main" key={index}>
+                <div className="av_data" key={index}>
                   <div className="img">
                     <img src={item.img} alt={item.name} />
                   </div>
@@ -319,11 +321,7 @@ const ConferenceEvent = () => {
               </div>
               <div className="meal_selection">
                 {mealsItems.map((item, index) => (
-                  <div
-                    className="meal_item"
-                    key={index}
-                    style={{ padding: 15 }}
-                  >
+                  <div className="meal_item" key={index} style={{padding: 15}}>
                     <div className="inner">
                       <input
                         type="checkbox"
